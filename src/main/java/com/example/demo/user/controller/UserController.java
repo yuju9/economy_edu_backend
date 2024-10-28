@@ -7,6 +7,8 @@ import com.example.demo.user.model.UserInfoReq;
 import com.example.demo.user.model.UserLoginReq;
 import com.example.demo.user.model.UserSignupReq;
 import com.example.demo.user.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +29,13 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
 
     @PostMapping("/signup")
+    @Tag(name = "회원가입 api")
     public ResponseEntity<String> signUp(@RequestBody UserSignupReq userDto) {
         if (userDto.getUserId() == null || userDto.getUserPassword() == null ||
                 userDto.getUserName() == null || userDto.getUserNickname() == null ||
                 userDto.getUserEmail() == null) {
             return ResponseEntity.badRequest().body("모든 필드를 입력해주세요.");
         }
-
-
 
         User user = User.builder()
                 .userId(userDto.getUserId())
@@ -49,7 +50,15 @@ public class UserController {
         return ResponseEntity.ok("User successfully registered.");
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
+        // 상태 코드는 409로 설정
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    }
+
+
     @PutMapping("/info")
+    @Tag(name = "회원수정(닉네임 수정) api")
     public ResponseEntity<String> updateUserInfo(@RequestBody UserInfoReq userInfoReq) {
         String newNickname = userInfoReq.getNewNickname();
         userService.updateUserInfo(newNickname);
@@ -57,6 +66,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
+    @Tag(name = "로그인 api")
     public ResponseEntity<String> login(@RequestBody UserLoginReq loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUserId(), loginRequest.getUserPassword())
