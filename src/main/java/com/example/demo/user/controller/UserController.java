@@ -46,14 +46,20 @@ public class UserController {
                 .userEmail(userDto.getUserEmail())
                 .build();
 
-        userService.singUp(user);
-        return ResponseEntity.ok("User successfully registered.");
+        try {
+            userService.singUp(user);
+            return ResponseEntity.ok("{\"message\":\"User successfully registered.\"}");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("{\"error\":\"" + e.getMessage() + "\"}");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\":\"서버 오류가 발생했습니다.\"}");
+        }
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
         // 상태 코드는 409로 설정
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("{\"error\":\"" + ex.getMessage() + "\"}");
     }
 
 
