@@ -20,6 +20,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/user")
@@ -71,16 +74,22 @@ public class UserController {
         return ResponseEntity.ok("User successfully updated.");
     }
 
+
     @PostMapping("/login")
     @Tag(name = "로그인 api")
-    public ResponseEntity<String> login(@RequestBody UserLoginReq loginRequest) {
+    public ResponseEntity<Map<String, Object>> login(@RequestBody UserLoginReq loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUserId(), loginRequest.getUserPassword())
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         String token = userService.generateJwtToken(userDetails);
-        return ResponseEntity.ok(token);
+        Map<String, Object> responseBody = new HashMap<>();
+        responseBody.put("token", token); // JWT 토큰
+        responseBody.put("userId", userDetails.getUsername()); // 사용자 정보
+        responseBody.put("message", "User successfully logged in");
+
+        return ResponseEntity.ok(responseBody);
     }
 }
 
