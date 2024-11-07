@@ -7,6 +7,8 @@ import com.example.demo.user.model.User;
 import com.example.demo.user.model.UserLoginReq;
 import com.example.demo.user.model.UserState;
 import com.example.demo.user.repository.UserRepository;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -60,6 +62,12 @@ public class UserService {
             userRepository.save(user);
 
         }
+    }
+
+    @Transactional(readOnly = true)
+    public User getUserByUsername(String username) {
+        return userRepository.findByUserId(username) // username을 사용하여 사용자 검색
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
     }
 
 

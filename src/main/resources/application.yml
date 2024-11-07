@@ -12,9 +12,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://database-1.cjqusmaosj3q.ap-northeast-2.rds.amazonaws.com/economy?autoReconnect=true
-    username: admin
-    password: jenny0930*
+    url: jdbc:mysql://127.0.0.1:3306/economy?autoReconnect=true
+    username: root
+    password: 0930
 
 jwt:
   expiration_time: 86400000

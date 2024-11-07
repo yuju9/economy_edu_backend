@@ -31,5 +31,8 @@ public class Quiz {
     @JoinColumn(name = "quiz_category_seq", referencedColumnName = "quizCategorySeq")
     private QuizCategory quizCategory;
 
+//    @ManyToOne
+//    @JoinColumn(name = "quiz_result_seq", referencedColumnName = "quizResultSeq")
+//    private QuizResult quizResult;
 
 }

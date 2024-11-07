@@ -1,5 +1,6 @@
 package com.example.demo.user.model;
 
+import com.example.demo.quiz.model.QuizResult;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Data
@@ -51,5 +53,6 @@ public class User {
     @CreationTimestamp
     private Timestamp createDate;
 
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<QuizResult> quizResults;
 }
