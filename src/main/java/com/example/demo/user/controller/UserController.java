@@ -91,7 +91,6 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
-        // 사용자 정보를 가져옵니다.
         User user = userService.getUserByUsername(username);
 
         UserProfile userProfile = new UserProfile();

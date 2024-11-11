@@ -1,4 +1,4 @@
-package com.example.demo.user.model;
+package com.example.demo.level.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserProfile {
-    private String nickname;
-    private String email;
+public class LevelTestResultReq {
+    private int level;
 
 }

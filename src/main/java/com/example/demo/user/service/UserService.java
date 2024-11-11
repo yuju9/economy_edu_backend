@@ -2,13 +2,9 @@ package com.example.demo.user.service;
 
 import com.example.demo.user.CustomUserDetails;
 import com.example.demo.user.JwtUtil;
-import com.example.demo.user.model.CustomUserInfoDto;
 import com.example.demo.user.model.User;
-import com.example.demo.user.model.UserLoginReq;
 import com.example.demo.user.model.UserState;
 import com.example.demo.user.repository.UserRepository;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,7 +37,7 @@ public class UserService {
         String rawPassword = user.getUserPassword(); // 비밀번호 원문
         String encPassword = encode.encode(rawPassword); // 해쉬로 바꿈
         user.setUserPassword(encPassword); // 암호화된 비밀번호 설정
-        user.setUserState(UserState.ACTIVE); // 기본 사용자 권한 설정
+        user.setUserState(UserState.INACTIVE); // 기본 사용자 권한 설정
         user.setUserLevel(1);
         user.setRole("USER");
         userRepository.save(user); // DB에 저장
@@ -50,7 +46,6 @@ public class UserService {
     @Transactional
     public void updateUserInfo(String newNickname) {
         CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        log.info("현재 사용자 ID: {}", userDetails.getUsername());
 
         String currentUserId = userDetails.getUsername();
         User user = userRepository.findByUserId(currentUserId)
