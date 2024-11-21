@@ -96,6 +96,8 @@ public class UserController {
         UserProfile userProfile = new UserProfile();
         userProfile.setNickname(user.getUserNickname());
         userProfile.setEmail(user.getUserEmail());
+        userProfile.setUserName(user.getUserName());
+        userProfile.setUserLevel(user.getUserLevel());
 
 
         return ResponseEntity.ok(userProfile);

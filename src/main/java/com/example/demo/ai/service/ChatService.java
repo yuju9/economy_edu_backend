@@ -1,24 +1,19 @@
-//package com.example.demo.ai;
+//package com.example.demo.ai.service;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Service;
 //import org.springframework.web.client.RestTemplate;
-//import org.springframework.web.util.UriComponentsBuilder;
-//
 //import java.util.List;
 //
 //@Service
 //public class ChatService {
-//
 //    private final RestTemplate restTemplate;
-//
 //    @Autowired
 //    public ChatService(RestTemplate restTemplate) {
 //        this.restTemplate = restTemplate;
 //    }
-//
 //    public String generateResponse(List<String> messages) {
-//        String url = "http://localhost:9001/api/generate-response";  // FastAPI URL
+//        String url = "http://localhost:9000/api/generate-response";  // FastAPI URL
 //
 //        // 요청 본체 생성
 //        RequestBody requestBody = new RequestBody(messages);

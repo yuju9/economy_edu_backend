@@ -1,4 +1,4 @@
-package com.example.demo.ai;
+package com.example.demo.ai.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 

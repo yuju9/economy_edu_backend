@@ -10,5 +10,7 @@ import lombok.NoArgsConstructor;
 public class UserProfile {
     private String nickname;
     private String email;
+    private String userName;
+    private int userLevel;
 
 }

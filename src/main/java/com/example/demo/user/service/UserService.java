@@ -38,7 +38,7 @@ public class UserService {
         String encPassword = encode.encode(rawPassword); // 해쉬로 바꿈
         user.setUserPassword(encPassword); // 암호화된 비밀번호 설정
         user.setUserState(UserState.INACTIVE); // 기본 사용자 권한 설정
-        user.setUserLevel(1);
+        user.setUserLevel(0);
         user.setRole("USER");
         userRepository.save(user); // DB에 저장
     }

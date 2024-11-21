@@ -2,15 +2,10 @@ package com.example.demo.level.controller;
 
 import com.example.demo.level.model.LevelTestResultReq;
 import com.example.demo.level.service.LevelTestService;
-import com.example.demo.user.CustomUserDetails;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 @RestController
 @RequiredArgsConstructor

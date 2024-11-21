@@ -24,12 +24,18 @@ public class Quiz {
     @Column(nullable = false)
     private String quizQuestion;
 
+    // 답안 선택지
+    @Column(columnDefinition = "TEXT")
+    private String quizOption;
+
     @Column(nullable = false)
     private String quizAnswer;
 
-    @ManyToOne
-    @JoinColumn(name = "quiz_category_seq", referencedColumnName = "quizCategorySeq")
-    private QuizCategory quizCategory;
+    @Column(nullable = false)
+    private String quizCategory;
+
+    @Column(nullable = false)
+    private String quizComment;
 
 //    @ManyToOne
 //    @JoinColumn(name = "quiz_result_seq", referencedColumnName = "quizResultSeq")
