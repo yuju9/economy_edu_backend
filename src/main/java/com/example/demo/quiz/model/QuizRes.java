@@ -1,4 +1,4 @@
-package com.example.demo.user.model;
+package com.example.demo.quiz.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,28 +9,25 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserMyPage {
-
-    private String userId;
-    private String userNickname;
-    private String userName;
-    private String userEmail;
-    private String userBirthday;
+public class QuizRes {
 
     private int userLevel;
     private int userExp;
 
-    private List<QuizResultInfo> problemHistory;
+    private List<Quiz> Quiz;
 
     // Inner class to hold quiz question and result information
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
     public static class QuizResultInfo {
-        private String id;
-        private String title;
-        private String date;
-        private String result;
+        private int id;
+        private int quizLevel;
+        private String category;
+        private String question;
+        private String options;
+        private String answer;
+        private String comment;
     }
 }
 

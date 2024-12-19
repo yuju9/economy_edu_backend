@@ -98,6 +98,7 @@ public class UserController {
         userProfile.setEmail(user.getUserEmail());
         userProfile.setUserName(user.getUserName());
         userProfile.setUserLevel(user.getUserLevel());
+        userProfile.setUserExp(user.getUserExp());
 
 
         return ResponseEntity.ok(userProfile);
@@ -118,6 +119,7 @@ public class UserController {
         userMyPage.setUserEmail(user.getUserEmail());
         userMyPage.setUserBirthday(user.getUserBirthday());
         userMyPage.setUserLevel(user.getUserLevel());
+        userMyPage.setUserExp(user.getUserExp());
 
         List<UserMyPage.QuizResultInfo> quizResultInfos = user.getQuizResults().stream().map(result -> {
             UserMyPage.QuizResultInfo quizResultInfo = new UserMyPage.QuizResultInfo();

@@ -42,11 +42,14 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserState userState;
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false)
     private int userLevel;
 
     @Column(nullable = false)
-    private String role; // e.g., "USER", "ADMIN"
+    private int userExp;
+
+    @Column(nullable = false)
+    private String role;
 
     @CreationTimestamp
     private Timestamp createDate;

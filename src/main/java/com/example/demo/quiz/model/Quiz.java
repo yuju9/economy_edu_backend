@@ -31,11 +31,13 @@ public class Quiz {
     @Column(nullable = false)
     private String quizAnswer;
 
-    @Column(nullable = false)
-    private String quizCategory;
+//    @Column(nullable = false)
+    @Column
+    private String quizCategory; //GPT, LLAMA
 
     @Column(nullable = false)
     private String quizComment;
+
 
 //    @ManyToOne
 //    @JoinColumn(name = "quiz_result_seq", referencedColumnName = "quizResultSeq")

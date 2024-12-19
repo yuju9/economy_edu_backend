@@ -19,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -48,6 +49,8 @@ public class SecurityConfig {
                     corsConfig.addAllowedOrigin("http://localhost:3000"); // 리액트 앱의 URL
                     corsConfig.addAllowedMethod("*"); // 모든 HTTP 메서드 허용
                     corsConfig.addAllowedHeader("*"); // 모든 헤더 허용
+                    corsConfig.setAllowCredentials(true);
+
                     return corsConfig;
                 }))
                 .httpBasic(AbstractHttpConfigurer::disable)

@@ -12,5 +12,6 @@ public class UserProfile {
     private String email;
     private String userName;
     private int userLevel;
+    private int userExp;
 
 }

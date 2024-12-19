@@ -26,6 +26,7 @@ public class LevelTestService {
 
         user.setUserLevel(userLevel);
         user.setUserState(UserState.ACTIVE);
+        user.setUserExp(0);
         userRepository.save(user);
     }
 
